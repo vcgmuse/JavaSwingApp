@@ -5,31 +5,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+
 
 public class MainFrame extends JFrame {
   private TextPanel textPanel;
   private JButton button;
   private ToolBar toolBar;
+  private FormPanel formPanel;
 
   public MainFrame(){
     super("Hello World!");
     setLayout(new BorderLayout());
 
-    textPanel = new TextPanel();
-    button = new JButton("Click Me");
     toolBar = new ToolBar();
+    textPanel = new TextPanel();
+    formPanel = new FormPanel();
 
-    button.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        textPanel.appendText("Hello\n");
+    toolBar.setStringListener(new StringListener() {
+      @Override
+      public void textEmitted(String text) {
+        textPanel.appendText(text);
       }
     });
 
-    add(textPanel, BorderLayout.CENTER);
-    add(button, BorderLayout.SOUTH);
     add(toolBar, BorderLayout.NORTH);
+    add(formPanel, BorderLayout.WEST);
+    add(textPanel, BorderLayout.CENTER);
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setSize(600,500);
