@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+//Left off at number 12
+
 
 public class MainFrame extends JFrame {
   private TextPanel textPanel;
